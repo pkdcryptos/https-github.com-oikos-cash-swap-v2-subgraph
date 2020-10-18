@@ -14,6 +14,20 @@ This subgraph dynamically tracks any pair created by the uniswap factory. It tra
 
 Make sure to update package.json settings to point to your own graph account.
 
+```sh
+npm install
+# update subgraph.yaml with correct contract address and start block number
+# update package.json to point to correct thegraph node
+# graph codegen
+npm run codegen
+# graph build
+npm run build
+# create subgraph
+npm run create:local
+# deploy subgraph
+npm run deploy:local
+```
+
 ## Queries
 
 Below are a few ways to show how to query the uniswap-subgraph for data. The queries show most of the information that is queryable, but there are many other filtering options that can be used, just check out the [querying api](https://thegraph.com/docs/graphql-api). These queries can be used locally or in The Graph Explorer playground.
