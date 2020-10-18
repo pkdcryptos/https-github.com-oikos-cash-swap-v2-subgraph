@@ -7,7 +7,7 @@ import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 const WETH_ADDRESS = '0x891cdb91d149f23B1a45D9c5Ca78a88d0cB44C18'
 // const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
 // const DAI_WETH_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
-// https://github.com/oikos-cash/default-token-list/blob/master/build/swap-default.tokenlist.json#L115
+// https://github.com/oikos-cash/swap-sdk/blob/master/src/constants.ts#L116
 const USDJ_WTRX_PAIR = '0x97241d2a49699e9f333fa5ea2b0e57f52c7d63b5'
 
 export function getEthPriceInUSD(): BigDecimal {
@@ -17,9 +17,12 @@ export function getEthPriceInUSD(): BigDecimal {
   // let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
 
   // @TODO(tron): avg more stablecoins (e.g. sUSD, USDT, USDJ, etc.)
+  // log.info('getEthPriceInUSD', [])
   // let usdjPair = Pair.load(USDJ_WTRX_PAIR)
+  // log.info('usdjPair.token1.symbol: {}', [usdjPair.token1])
   // log.info('usdjPair.token1Price: {}', [usdjPair.token1Price.toString()])
-  // TODO
+  // TODO: for some reason this causes an error in wasm runtime (e.g.
+  // Value is not a BigDecimal)
   return ZERO_BD
   // TODO
   // let usdjPair = Pair.load(USDJ_WTRX_PAIR) // usdj is token1
