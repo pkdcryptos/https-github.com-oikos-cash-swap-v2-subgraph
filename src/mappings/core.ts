@@ -1,6 +1,7 @@
 import { PairHourData } from './../types/schema'
 /* eslint-disable prefer-const */
-import { BigInt, BigDecimal, store, Address } from '@graphprotocol/graph-ts'
+import { BigInt, BigDecimal, store, Address, log } from '@graphprotocol/graph-ts'
+
 import {
   Pair,
   Token,
@@ -215,6 +216,7 @@ export function handleTransfer(event: Transfer): void {
 }
 
 export function handleSync(event: Sync): void {
+  log.info('handleSync invoked... event: {}', [event.transaction.hash.toHexString()])
   let pair = Pair.load(event.address.toHex())
   let token0 = Token.load(pair.token0)
   let token1 = Token.load(pair.token1)

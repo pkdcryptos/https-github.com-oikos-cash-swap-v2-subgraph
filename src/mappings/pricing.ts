@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import { Pair, Token, Bundle } from '../types/schema'
-import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
+import { BigDecimal, Address, BigInt, log } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
 // https://tronscan.io/#/token20/TNUC9Qb1rRpS5CbWLmNMxXBjyFoydXjWFR
@@ -17,8 +17,13 @@ export function getEthPriceInUSD(): BigDecimal {
   // let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
 
   // @TODO(tron): avg more stablecoins (e.g. sUSD, USDT, USDJ, etc.)
-  let usdjPair = Pair.load(USDJ_WTRX_PAIR) // usdj is token1
-  return usdjPair.token1Price
+  // let usdjPair = Pair.load(USDJ_WTRX_PAIR)
+  // log.info('usdjPair.token1Price: {}', [usdjPair.token1Price.toString()])
+  // TODO
+  return ZERO_BD
+  // TODO
+  // let usdjPair = Pair.load(USDJ_WTRX_PAIR) // usdj is token1
+  // return usdjPair.token1Price
 
   // all 3 have been created
   /*
