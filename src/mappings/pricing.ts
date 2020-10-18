@@ -3,18 +3,25 @@ import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
-const WETH_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
-const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
-const DAI_WETH_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
-const USDT_WETH_PAIR = '0x0d4a11d5eeaac28ec3f61d100daf4d40471f1852' // created block 10093341
+// https://tronscan.io/#/token20/TNUC9Qb1rRpS5CbWLmNMxXBjyFoydXjWFR
+const WETH_ADDRESS = '0x891cdb91d149f23B1a45D9c5Ca78a88d0cB44C18'
+// const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
+// const DAI_WETH_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
+// https://github.com/oikos-cash/default-token-list/blob/master/build/swap-default.tokenlist.json#L115
+const USDJ_WTRX_PAIR = '0x97241d2a49699e9f333fa5ea2b0e57f52c7d63b5'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
-  let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
+  // let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
+  // let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
+  // let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
+
+  // @TODO(tron): avg more stablecoins (e.g. sUSD, USDT, USDJ, etc.)
+  let usdjPair = Pair.load(USDJ_WTRX_PAIR) // usdj is token1
+  return usdjPair.token1Price
 
   // all 3 have been created
+  /*
   if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
     let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve0)
     let daiWeight = daiPair.reserve1.div(totalLiquidityETH)
@@ -36,10 +43,18 @@ export function getEthPriceInUSD(): BigDecimal {
   } else {
     return ZERO_BD
   }
+ */
 }
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
+  WETH_ADDRESS,
+  '0xa614f803B6FD780986A42c78Ec9c7f77e6DeD13C', // USDT
+  '0x834295921A488D9d42b4b3021ED1a3C39fB0f03e' // USDJ
+  // @TDOO(tron): add all tokens from
+  // https://github.com/oikos-cash/default-token-list/blob/master/build/swap-default.tokenlist.json#L115
+  // ?
+  /*
   '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', // WETH
   '0x6b175474e89094c44da98b954eedeac495271d0f', // DAI
   '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // USDC
@@ -56,6 +71,7 @@ let WHITELIST: string[] = [
   '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f', //SNX
   '0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e', //YFI
   '0xdf5e0e81dff6faf3a7e52ba697820c5e32d806a8' // yCurv
+ */
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
