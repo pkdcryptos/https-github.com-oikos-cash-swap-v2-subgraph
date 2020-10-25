@@ -8,7 +8,7 @@ const WETH_ADDRESS = '0x891cdb91d149f23B1a45D9c5Ca78a88d0cB44C18'
 // const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
 // const DAI_WETH_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
 // https://github.com/oikos-cash/swap-sdk/blob/master/src/constants.ts#L116
-const USDJ_WTRX_PAIR = '0x97241d2a49699e9f333fa5ea2b0e57f52c7d63b5'
+const USDJ_WTRX_PAIR = '0x43965424c16fF65c2d85ffe6514C1585890b99Aa'
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
