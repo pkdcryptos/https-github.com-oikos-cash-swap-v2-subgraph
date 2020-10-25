@@ -8,7 +8,7 @@ dataSources:
     name: Factory
     network: testnet
     source:
-      address: '0x98fED14512ec379eB5a545e1aE1DbDa17476439A'
+      address: '0x040A3d84309784628290b9f3437874868beE30Af'
       abi: Factory
       startBlock: 22973430
     mapping:
